@@ -37,7 +37,9 @@ var MoviePoster = React.createClass({
 	},
 	render: function(){
 		return (
-				React.createElement('img', {key: this.props.movie.id, src:this.props.movie.img})
+				React.createElement('li', {key: this.props.movie.id},
+					React.createElement('img', {src:this.props.movie.img})
+				)
 		)
 	}
 });
@@ -48,8 +50,10 @@ var MovieTitle = React.createClass({
 	},
 	render: function(){
 		return (
-				React.createElement('h2', {key: this.props.movie.id,src:this.props.movie.title})
-		)
+				React.createElement('li', {key: this.props.movie.id},
+					React.createElement('h2', {}, this.props.movie.title)
+				)
+			)
 	}
 });
 
@@ -59,12 +63,12 @@ var MovieDescription = React.createClass({
 	},
 	render: function(){
 		return (
-				React.createElement('p', {key: this.props.movie.id, src:this.props.movie.desc})
+			React.createElement('li', {key: this.props.movie.id},
+				React.createElement('p', {}, this.props.movie.desc)
+			)
 		)
 	}
 });
-
-
 
 var moviesElements = []
 for(var i = 0; i < movies.length; i++) {
