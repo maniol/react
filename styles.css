@@ -1,0 +1,50 @@
+#app {
+	display: flex;
+	justify-content: center;
+}
+form {
+	display: flex;
+	flex-flow: wrap;
+}
+input[type=email] {
+		flex-basis:50%;
+	}
+
+input {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 1px solid gray;
+	margin-right: 10px;
+	margin-bottom: 20px;
+}
+button {
+	height: 40px;
+	width:100px;
+	border-radius: 0;
+	background-color: #B0E0E6;
+	}
+img {
+	flex: 25%;
+	max-width: 25%;
+	height: 50px;
+	padding: 0 4px;
+	vertical-align: middle
+}
+.contactsList {
+	padding: 0;
+}
+.contactItem {
+	background-color: #b4c4dd;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+p{
+	flex: 25%;
+}
+a {
+	flex:10%;
+}
