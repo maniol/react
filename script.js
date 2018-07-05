@@ -31,16 +31,13 @@ var movies = [
 	}
 ];
 
+
 var MoviePoster = React.createClass({
 	propTypes: {
 		movie: React.PropTypes.object.isRequired
 	},
 	render: function(){
-		return (
-				React.createElement('li', {key: this.props.movie.id},
-					React.createElement('img', {src:this.props.movie.img})
-				)
-		)
+		return React.createElement('img', {src:this.props.movie.img})
 	}
 });
 
@@ -49,11 +46,7 @@ var MovieTitle = React.createClass({
 		movie: React.PropTypes.object.isRequired
 	},
 	render: function(){
-		return (
-				React.createElement('li', {key: this.props.movie.id},
-					React.createElement('h2', {}, this.props.movie.title)
-				)
-			)
+		return React.createElement('h2', {}, this.props.movie.title)
 	}
 });
 
@@ -62,20 +55,29 @@ var MovieDescription = React.createClass({
 		movie: React.PropTypes.object.isRequired
 	},
 	render: function(){
-		return (
-			React.createElement('li', {key: this.props.movie.id},
-				React.createElement('p', {}, this.props.movie.desc)
-			)
-		)
+		return React.createElement('p', {}, this.props.movie.desc)
 	}
 });
 
+var MovieListing = React.createClass({
+	propTypes: {
+		movie: React.PropTypes.object.isRequired
+	},
+	render: function(){
+		return (
+				React.createElement('li', {key: this.props.movie.id},
+					React.createElement(MovieTitle, {movie: this.props.movie}),
+					React.createElement(MoviePoster, {movie: this.props.movie}),
+					React.createElement(MovieDescription, {movie: this.props.movie})
+				)
+		)
+	}
+})
+
 var moviesElements = []
 for(var i = 0; i < movies.length; i++) {
-		var moviePosterElement = React.createElement(MoviePoster, {key: movies[i].id, movie: movies[i]});
-		var movieTitleElement = React.createElement(MovieTitle, {key: movies[i].id, movie: movies[i]});
-		var movieDescriptionElement = React.createElement(MovieDescription, {key: movies[i].id, movie: movies[i]});
-		moviesElements.push(moviePosterElement,movieTitleElement,movieDescriptionElement);
+		var movieListing = React.createElement(MovieListing, {key: movies[i].id, movie: movies[i]});
+		moviesElements.push(movieListing);
 }
 
 var MovieList = React.createClass({
