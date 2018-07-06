@@ -1,6 +1,6 @@
 var CounterAddition = React.createClass({
 	getDefaultProps: function() {
-		console.log(this.props);
+		console.log('initialization phase: getting default props');
 	},
 	getInitialState: function() {
 		return {
@@ -17,8 +17,9 @@ var CounterAddition = React.createClass({
 			counter: this.state.counter - 1
 		});
 	},
-	shouldComponentUpdate: function () {
-		console.log();
+	shouldComponentUpdate: function (nextProps, nextState) {
+		console.log('update phase: should component update');
+		return nextState.count == this.state.count;
 	},
 	render: function() {
 		return React.createElement('div', {},
@@ -28,10 +29,13 @@ var CounterAddition = React.createClass({
 			);
 		},
 	componentDidMount: function() {
-		console.log();
+		console.log('initialization: after mounting');
 	},
-	componentWillReceiveProps() {
-		console.log(this.props);
+	componentDidUpdate() {
+		console.log('update phase: component did update');
+	},
+	componentWillUnmount: function() {
+		console.log('delete phase: component will unmount')
 	}
 });
 
