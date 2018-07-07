@@ -28,8 +28,14 @@ var contactForm = {
 var App = React.createClass({
 	render: function() {
 		return (
-			React.createElement('div', {className: 'app'},
-				React.createElement(ContactForm, {contact: contactForm}),
+			<div className={app}>
+				<form className={contactForm}>
+					<input type={'text'} placeholder={'Name'} value={this.props.contact.firstName}></input>
+					<input type={'text'} placeholder={'Last Name'} value={this.props.contact.lastName}></input>
+					<input type={'email'} placeholder={'Email'} value={this.props.contact.email}></input>
+					<button type={'submit'}>Add contact</button>
+				</form>
+				/* tu musze dodac funkcje z petla ktora generuje html dla kazdego kontaktu - o to chodzi?*/
 				React.createElement(Contacts, {items: contacts}, {})
 			)
 		);
