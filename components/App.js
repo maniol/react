@@ -10,32 +10,39 @@ App = React.createClass({
 		this.setState({
 			loading: true
 		});
-		this.getGif(searchTerm, function(gif) {
-			this.setState({
-				loading: false,
-				gif: gif,
-				searchTerm: searchTerm
-			});
-		}.bind(this));
-	},
-	getGif: function(searchTerm, callback) {
-		var GIPHY_API_URL = 'http://api.giphy.com';
-		var GIPHY_PUB_KEY = 'dc6zaTOxFJmzC';
-		var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchTerm;
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', url);
-		xhr.onload = function() {
-			if(xhr.status === 200) {
-				var data = JSON.parse(xhr.responseText).data;
+		this.getGif(searchTerm, function(gif))
+			.then(response => var data = JSON.parse(response.responseText).data;
 				var gif = {
 					url: data.fixed_width_downsampled_url,
 					sourceUrl: data.url
 				};
 				callback(gif);
-			}
-		};
-		xhr.send();
+			 )
+			.catch(error => console.error('Something went wrong', error));
+			this.setState({
+				loading: false,
+				gif: gif,
+				searchTerm: searchTerm
+			});
 	},
+	getGif: function(searchTerm, callback){
+		return new Promise(
+			function(resolve, reject) {
+				var GIPHY_API_URL = 'http://api.giphy.com';
+				var GIPHY_PUB_KEY = 'dc6zaTOxFJmzC';
+				var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchTerm;
+				const request = new XMLHttpRequest();
+				request.onload = function() {
+					if (this.status === 200) {
+						resolve(this.response);
+					} else {
+						reject(new Error(this.statusText));
+					}
+				};
+				request.open('GET', url);
+				request.send();
+			});
+	},	
 	render: function(){
 		var styles = {
 			margin: '0 auto',
