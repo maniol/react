@@ -19,7 +19,7 @@ Search = React.createClass({
 		}
 	},
 	render: function(){
-		var syles = {
+		var styles = {
 			fontSize: '1.5em',
 			width: '90%',
 			maxWidth: '350px'

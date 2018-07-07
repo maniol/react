@@ -1,5 +1,5 @@
 App = React.createClass({
-	getInitialState: {
+	getInitialState: function() {
 		return {
 			loading: false,
 			searchTerm:'',
@@ -19,6 +19,8 @@ App = React.createClass({
 		}.bind(this));
 	},
 	getGif: function(searchTerm, callback) {
+		var GIPHY_API_URL = 'http://api.giphy.com';
+		var GIPHY_PUB_KEY = 'dc6zaTOxFJmzC';
 		var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchTerm;
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', url);
@@ -37,7 +39,7 @@ App = React.createClass({
 	render: function(){
 		var styles = {
 			margin: '0 auto',
-			textAlig: 'center',
+			textAlign: 'center',
 			width: '90%'
 		};
 		return (
@@ -51,7 +53,7 @@ App = React.createClass({
 				<Gif
 					loading={this.state.loading}
 					url={this.state.gif.url}
-					sourceUrl={this.stte.gif.sourceUrl}
+					sourceUrl={this.state.gif.sourceUrl}
 				/>
 			</div>
 			);
