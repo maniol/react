@@ -1,0 +1,29 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "start": "http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maniol/node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maniol/node/issues"
+  },
+  "homepage": "https://github.com/maniol/node#readme",
+  "dependencies": {
+    "colors": "^1.3.0",
+    "formidable": "^1.2.1"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  }
+}
