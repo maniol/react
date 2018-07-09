@@ -11,16 +11,19 @@ App = React.createClass({
 			loading: true
 		});
 		this.getGif(searchTerm)
-			.then(response => const data = JSON.parse(response.responseText).data;
-				var gif = {
-					url: data.fixed_width_downsampled_url,
-					sourceUrl: data.url
-				};
-				this.setState({
-				loading: false,
-				gif: gif,
-				searchTerm: searchTerm
-			});
+			.then(response => {
+					const data = JSON.parse(response).data;
+					console.log(data)
+					const gif = {
+						url: data.fixed_width_downsampled_url,
+						sourceUrl: data.url
+					};
+					this.setState({
+						loading: false,
+						gif: gif,
+						searchTerm: searchTerm
+					});
+				}
 			)
 			.catch(error => console.error('Something went wrong', error));
 	},
@@ -32,17 +35,17 @@ App = React.createClass({
 				const xhr = new XMLHttpRequest();
 				xhr.onload = function() {
 					if (this.status === 200) {
-						resolve(this.response);
+						resolve(xhr.response);
 					} else {
 						reject(new error(this.statusText));
 					}
 				};
-				request.open('GET', url);
-				request.send();
+				xhr.open('GET', url);
+				xhr.send();
 			});
 	},	
 	render: function(){
-		var styles = {
+		const styles = {
 			margin: '0 auto',
 			textAlign: 'center',
 			width: '90%'
